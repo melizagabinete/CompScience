@@ -1,4 +1,4 @@
-# Naive Bayes Classifier: Manual Implementation for Phone Example
+# Naive Bayes Classifier
 
 data = [
     {"Brand": "Samsung", "Color": "Titanium Orange", "Model": "Galaxy S10", "Broken": "Yes"},
@@ -16,7 +16,7 @@ data = [
 # Input to classify
 input_data = {"Brand": "Samsung", "Color": "Titanium Orange", "Model": "Galaxy S10"}
 
-# Step 1: Calculate Prior Probabilities
+#Prior probabilities calculation
 def calculate_priors(data):
     total = len(data)
     broken_counts = {"Yes": 0, "No": 0}
@@ -24,7 +24,7 @@ def calculate_priors(data):
         broken_counts[item["Broken"]] += 1
     return {key: value / total for key, value in broken_counts.items()}
 
-# Step 2: Calculate Conditional Probabilities
+#Conditional probabilities calculation
 def calculate_conditionals(data, input_data):
     conditional_probs = {"Yes": 1, "No": 1}
     for key in input_data:
@@ -38,19 +38,16 @@ def calculate_conditionals(data, input_data):
             conditional_probs[broken] *= counts[broken] / total_counts[broken] if total_counts[broken] != 0 else 0
     return conditional_probs
 
-# Step 3: Calculate Posterior Probabilities
+#Posterior Probabilities Calculation
 def calculate_posteriors(priors, conditionals):
     posteriors = {}
     for broken in priors:
         posteriors[broken] = priors[broken] * conditionals[broken]
     return posteriors
 
-# Main Execution
 priors = calculate_priors(data)
 conditionals = calculate_conditionals(data, input_data)
 posteriors = calculate_posteriors(priors, conditionals)
-
-# Classify
 classification = max(posteriors, key=posteriors.get)
 
 print("")
