@@ -1,6 +1,7 @@
-# CompScience
+# Computational Science
+
 ### Description
-The program uses linear regression to show the relationship between hours studied and grades. It calculates the slope and intercept of the regression line, then displays the data points and the line using `matplotlib`.
+This repository contains the assignments for the subject "Computational Science."
 
 ### Requirements
 - Python 3.x
